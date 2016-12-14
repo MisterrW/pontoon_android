@@ -45,9 +45,10 @@ class Runner {
   }
 
   public static void singleplayerSetup() {
+    GameState gameState = new GameState();
     ArrayList<CardPlayer> allPlayers = new ArrayList<CardPlayer>();
     ArrayList<CardPlayer> initialPlayers = new ArrayList<CardPlayer>();
-    System.out.println("You will be playing against Des the Slightly Dim Dealer.");
+    gameState.setMainText("You will be playing against Des the Slightly Dim Dealer.");
 
     System.out.println("Type your name.");
     String gamblerName = System.console().readLine();
