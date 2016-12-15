@@ -3,16 +3,14 @@ import java.util.*;
 
 public class SinglePlayerGameManager {
   private ArrayList<CardPlayer> allPlayers;
-  private ArrayList<CardPlayer> initialPlayers;
   private Dealer dealer;
   private Gambler player;
   private WinCheck winCheck;
 
-  public SinglePlayerGameManager(ArrayList<CardPlayer> allPlayers, ArrayList<CardPlayer> initialPlayers, Dealer dealer, Gambler player1){
+  public SinglePlayerGameManager(ArrayList<CardPlayer> allPlayers, Dealer dealer, Gambler player1){
     this.dealer = dealer;
     this.player = player1;
     this.allPlayers = allPlayers;
-    this.initialPlayers = initialPlayers;
     this.winCheck = new WinCheck(this.allPlayers);
   }
 
@@ -27,10 +25,6 @@ public class SinglePlayerGameManager {
     dealer.fillDeck();
     System.out.println("~* Shuffling the Deck! *~"); 
     dealer.shuffleCards();
-  }
-
-  public ArrayList<CardPlayer> checkInitialPlayers(){
-    return this.initialPlayers;
   }
 
   public void initialDeal(){

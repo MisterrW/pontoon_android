@@ -47,7 +47,6 @@ class Runner {
   public static void singleplayerSetup() {
     GameState gameState = new GameState();
     ArrayList<CardPlayer> allPlayers = new ArrayList<CardPlayer>();
-    ArrayList<CardPlayer> initialPlayers = new ArrayList<CardPlayer>();
     gameState.setMainText("You will be playing against Des the Slightly Dim Dealer.");
 
     System.out.println("Type your name.");
@@ -58,10 +57,8 @@ class Runner {
 
     allPlayers.add(allPlayers.size(), player1);
     allPlayers.add(allPlayers.size(), dealer);
-    initialPlayers.add(initialPlayers.size(), player1);
-    initialPlayers.add(initialPlayers.size(), dealer);
 
-    SinglePlayerGameManager game = new SinglePlayerGameManager(allPlayers, initialPlayers, dealer, player1);
+    SinglePlayerGameManager game = new SinglePlayerGameManager(allPlayers, dealer, player1);
     game.play();
   }
 }
