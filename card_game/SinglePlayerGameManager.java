@@ -2,16 +2,18 @@ package card_game;
 import java.util.*;    
 
 public class SinglePlayerGameManager {
+  private GameState gameState;
   private ArrayList<CardPlayer> allPlayers;
   private Dealer dealer;
   private Gambler player;
   private WinCheck winCheck;
 
-  public SinglePlayerGameManager(ArrayList<CardPlayer> allPlayers, Dealer dealer, Gambler player1){
+  public SinglePlayerGameManager(GameState gameState, ArrayList<CardPlayer> allPlayers, Dealer dealer, Gambler player1){
+    this.gameState = gameState;
     this.dealer = dealer;
     this.player = player1;
     this.allPlayers = allPlayers;
-    this.winCheck = new WinCheck(this.allPlayers);
+    this.winCheck = new WinCheck(this, gameState, this.allPlayers);
   }
 
   public void play(){
@@ -21,14 +23,14 @@ public class SinglePlayerGameManager {
   }
 
   public void setup(){
-    System.out.println("~* Filling the Deck! *~"); 
+    gameState.setToastText("~* Filling the Deck! *~"); 
     dealer.fillDeck();
-    System.out.println("~* Shuffling the Deck! *~"); 
+    gameState.setToastText("~* Shuffling the Deck! *~"); 
     dealer.shuffleCards();
   }
 
   public void initialDeal(){
-    System.out.println("~* Initial deal! All players receive two cards! *~"); 
+    gameState.setToastText("~* Initial deal! All players receive two cards! *~"); 
     for(int i=1; i<=2; i++) {
       dealAll();
     }
@@ -52,25 +54,25 @@ public class SinglePlayerGameManager {
     if (this.allPlayers.size() == 2) 
     {
       
-        System.out.println("~* You're up, " + this.player.getName() + ". Stick or twist? *~");
-        choice = System.console().readLine().toLowerCase();
-        System.out.println("You  " + choice + "!");
+        gameState.setMainText("~* You're up, " + this.player.getName() + ". Stick or twist? *~");
+        choice = gameState.getPlayerInput();
+        gameState.setMainText("You  " + choice + "!");
         if(choice.equals("twist")) 
         {
           Card card = deal(this.player);
-          System.out.println("You receive the " + card.getName() + ".");
-          System.out.println(this.player.getName() + ", your hand is now worth " + this.winCheck.calcScore(this.player) + ".");
-          System.out.println("*~*~*~*~*");
+          gameState.setToastText("You receive the " + card.getName() + ".");
+          gameState.setToastText(this.player.getName() + ", your hand is now worth " + this.winCheck.calcScore(this.player) + ".");
+          gameState.setToastText("*~*~*~*~*");
           this.winCheck.bustCheck(this.player);
         } 
         else 
         {
-          System.out.println(this.player.getName() + ", your hand is worth " + this.winCheck.calcScore(this.player) + ".");
+          gameState.setToastText(this.player.getName() + ", your hand is worth " + this.winCheck.calcScore(this.player) + ".");
         }
       }
 
       if (choice.equals("stick")) {
-       System.out.println("You stick! Dealer's round!");
+       gameState.setMainText("You stick! Dealer's round!");
        dealersRound();
       } else {
        turnHandler();     
@@ -79,12 +81,12 @@ public class SinglePlayerGameManager {
 
   public void dealersRound() {
     if (this.winCheck.calcScore(this.dealer) <= 16) {
-      System.out.println("Des takes a card!");
+      gameState.setToastText("Des takes a card!");
       deal(this.dealer);
       this.winCheck.bustCheck(this.dealer);
       dealersRound();
     }
-    System.out.println("Des sticks! Show!");
+    gameState.setToastText("Des sticks! Show!");
     winCheck();
   }
 
@@ -93,15 +95,6 @@ public class SinglePlayerGameManager {
     this.winCheck.winCheck();
   }
 
-  public static void endGame(){
-    System.out.println("~* Thanks for playing! *~");
-    System.out.println("~* Type P to play again, or anything else to quit. *~");
-    String choice = System.console().readLine().toLowerCase();
-    if (choice.equals("p")) {
-      Runner.setup();
-    } else {
-      System.exit(0);
-    }
-  }
+  
 
 }

@@ -13,6 +13,7 @@
 
   game activity
 
+  dealer hand section
   toast text section
   clear text button
   hand
@@ -20,6 +21,7 @@
 
   stick or twist activity
   
+  dealer hand section
   toast text section
   twist button
   stick button

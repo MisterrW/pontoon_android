@@ -2,12 +2,16 @@ package card_game;
 import java.util.*;    
 
 public class WinCheck {
+  private GameState gameState; 
   private ArrayList<CardPlayer> allPlayers;
   private String outcome;
+  private SinglePlayerGameManager singlePlayerGameManager;
 
-  public WinCheck(ArrayList<CardPlayer> allPlayers){
+  public WinCheck(SinglePlayerGameManager gameManager, GameState gameState, ArrayList<CardPlayer> allPlayers){
+    this.gameState = gameState;
     this.allPlayers = allPlayers;
     this.outcome = new String("");
+    this.singlePlayerGameManager = singlePlayerGameManager;
   }
 
   public void showAllHands() {
@@ -16,14 +20,18 @@ public class WinCheck {
     }
   }
 
-  public void showHand(CardPlayer player){
-    System.out.println(player.getName() + " has these cards:");
+  // public void showHand(CardPlayer player){
+  //   System.out.println(player.getName() + " has these cards:");
 
-    ArrayList<Card> cards = player.showHand();
-    for (Card card : cards) {
-      System.out.println("- " + card.getName());
-    }
-    System.out.println("*~*~*~*~*");
+  //   ArrayList<Card> cards = player.showHand();
+  //   for (Card card : cards) {
+  //     System.out.println("- " + card.getName());
+  //   }
+  //   System.out.println("*~*~*~*~*");
+  // }
+
+  public void showHand(CardPlayer player) {
+    gameState.showHand(player);
   }
 
   public int calcScore(CardPlayer player) {
@@ -67,17 +75,17 @@ public class WinCheck {
     for(Card card : player.showHand()) {
       if(card.getValue() == CardValue.ACE) {
         if(player.getScore() > 21) {
-          System.out.println("Aces low!");
+          gameState.setToastText("Aces low!");
           player.setScore(player.getScore()-10);
         }
       }
     }
 
     if (player.getScore() == 21 && player.showHand().size() == 2) {
-      System.out.println(player.getName() + " has a Pontoon! " + player.showHand().get(0).getName() + " and " + player.showHand().get(1).getName() + ".");
+      gameState.setToastText(player.getName() + " has a Pontoon! " + player.showHand().get(0).getName() + " and " + player.showHand().get(1).getName() + ".");
       player.setSpecialScore("pontoon");
     } else if (player.getScore() <= 21 && player.showHand().size() >= 5) {
-      System.out.println(player.getName() + " has a 5 card trick!");
+      gameState.setToastText(player.getName() + " has a 5 card trick!");
       player.setSpecialScore("5 card trick");
     }
     
@@ -87,24 +95,35 @@ public class WinCheck {
   public void bustCheck(CardPlayer player){
     if(calcScore(player) > 21) {
       showHand(player);
-      System.out.println(player.getName() + " is bust!");
+      gameState.setToastText(player.getName() + " is bust!");
       this.allPlayers.remove(player);
       winCheck();
     }
   }
 
   public void winCheck() {
-    System.out.println("*~*~*~*~*");
+    // System.out.println("*~*~*~*~*");
     for (CardPlayer player : allPlayers) {
       calcScore(player);
     }
     winCheckSpecialScore();
-    System.out.println("~* " + this.outcome + " *~");
-    GameManager.endGame();
+    gameState.setMainText("~* " + this.outcome + " *~");
+    endGame();
+  }
+
+  public void endGame(){
+    gameState.setToastText("~* Thanks for playing! *~");
+    gameState.setMainText("~* Type P to play again, or anything else to quit. *~");
+    String choice = gameState.getPlayerInput();
+    if (choice.equals("p")) {
+      Runner.singleplayerSetup();
+    } else {
+      System.exit(0);
+    }
   }
 
     public String fakeWinCheck() {
-    System.out.println("*~*~*~*~*");
+    // System.out.println("*~*~*~*~*");
     for (CardPlayer player : allPlayers) {
       calcScore(player);
     }

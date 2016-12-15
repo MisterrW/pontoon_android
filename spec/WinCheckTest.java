@@ -7,6 +7,7 @@ public class WinCheckTest {
   Gambler player;
   Dealer dealer;
   ArrayList<CardPlayer> allPlayers;
+  SinglePlayerGameManager game;
   WinCheck winCheck;
 
   @Before
@@ -15,7 +16,9 @@ public class WinCheckTest {
     dealer = new Dealer("Dealer", new Hand(), new Deck());
     allPlayers = new ArrayList<CardPlayer>();
     allPlayers.add(player);
-    winCheck = new WinCheck(allPlayers);
+    GameState gameState = new GameState();
+    game = new SinglePlayerGameManager(gameState, allPlayers, dealer, player);
+    winCheck = new WinCheck(game, gameState, allPlayers);
   }
 
   @Test
