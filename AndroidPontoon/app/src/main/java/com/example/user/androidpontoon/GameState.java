@@ -92,7 +92,6 @@ public class GameState {
     }
 
     public void updateHand(String text) {
-
         setup.setPlayerHand(text);
     }
 

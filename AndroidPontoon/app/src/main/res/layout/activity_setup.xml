@@ -5,35 +5,64 @@
 
     <TextView
         android:id="@+id/main_text"
-        android:layout_marginTop="30dp"
-        android:textSize="30dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"/>
 
-
     <EditText
         android:id="@+id/enter_name"
-        android:layout_marginTop="30dp"
-        android:textSize="30dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="input"/>
 
+    <!--<Button-->
+        <!--android:id="@+id/go_button"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:textSize="20dp"-->
+        <!--android:text="GO"/>-->
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="horizontal" android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+
     <Button
-        android:id="@+id/go_button"
+        android:id="@+id/twist_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:textSize="20dp"
-        android:text="GO"/>
+        android:text="TWIST"/>
+
+    <Button
+        android:id="@+id/stick_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:text="STICK"/>
+
+        </LinearLayout>
 
     <TextView
         android:id="@+id/hand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:textSize="30dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
         android:text="Hand"/>
+
+    <Button
+        android:id="@+id/restart_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:text="RESTART"/>
 
 </LinearLayout>

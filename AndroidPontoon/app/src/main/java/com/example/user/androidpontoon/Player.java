@@ -5,12 +5,14 @@ public abstract class Player{
   private String name;
   private Hand hand;
   private int score;
+  private int winCount;
   private String specialScore;
 
   public Player(String name, Hand hand) {
     this.hand = hand;
     this.name = name;
     this.score = 0;
+    this.winCount = 0;
     this.specialScore = "";
   }
 
@@ -40,5 +42,13 @@ public abstract class Player{
 
   public String getSpecialScore() {
     return this.specialScore;
+  }
+
+  public int getWinCount() {
+    return winCount;
+  }
+
+  public void setWinCount(int winCount) {
+    this.winCount = winCount;
   }
 }

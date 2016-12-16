@@ -1,5 +1,6 @@
 package com.example.user.androidpontoon;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,20 +12,24 @@ import android.widget.Toast;
 public class Setup extends AppCompatActivity {
 
     TextView mainText;
+    TextView hand;
     EditText enterName;
     Button goButton;
+    Button twistButton;
+    Button stickButton;
+    Button restartButton;
     GameState gameState;
-    String userInput;
-    TextView hand;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
 
+//        goButton = (Button)findViewById(R.id.go_button);
+        twistButton = (Button)findViewById(R.id.twist_button);
+        stickButton = (Button)findViewById(R.id.stick_button);
+        restartButton = (Button)findViewById(R.id.restart_button);
 
-        goButton = (Button)findViewById(R.id.go_button);
         gameState = new GameState(Setup.this);
         String text = gameState.getMainText();
         mainText = (TextView)findViewById(R.id.main_text);
@@ -34,7 +39,14 @@ public class Setup extends AppCompatActivity {
 
         gameState.singleplayerSetup();
 
-
+        restartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+        });
 //        playerHand.setText(text);
     }
 
@@ -51,15 +63,27 @@ public class Setup extends AppCompatActivity {
 //    }
 
     public void getPlayerChoice() {
-        goButton.setOnClickListener(new View.OnClickListener() {
+//        goButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(enterName.getText().toString().toLowerCase().equals("twist")){
+//                    gameState.setPlayerChoice("twist");
+//                }
+//                else if(enterName.getText().toString().toLowerCase().equals("stick")){
+//                    gameState.setPlayerChoice("stick");
+//                }
+//            }
+//        });
+        twistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(enterName.getText().toString().toLowerCase().equals("twist")){
                     gameState.setPlayerChoice("twist");
-                }
-                else if(enterName.getText().toString().toLowerCase().equals("stick")){
-                    gameState.setPlayerChoice("stick");
-                }
+            }
+        });
+        stickButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gameState.setPlayerChoice("stick");
             }
         });
     }
@@ -77,4 +101,3 @@ public class Setup extends AppCompatActivity {
     }
 
 }
-
