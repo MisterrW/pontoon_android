@@ -7,12 +7,14 @@ public class WinCheck {
     private String outcome;
     private SinglePlayerGameManager singlePlayerGameManager;
     private Dealer dealer;
+    private Gambler player;
 
     public WinCheck(SinglePlayerGameManager gameManager, GameState gameState, ArrayList<CardPlayer> allPlayers){
         this.gameState = gameState;
         this.allPlayers = allPlayers;
         this.outcome = new String("");
         this.singlePlayerGameManager = gameManager;
+        this.player = (Gambler)allPlayers.get(0);
         this.dealer = (Dealer)allPlayers.get(1);
     }
 
@@ -108,6 +110,7 @@ public class WinCheck {
         gameState.setToastText("~* Type P to play again, or anything else to quit. *~");
         gameState.endGame();
         gameState.showDealerHand(dealer);
+        gameState.showHand(player);
 //    String choice = gameState.getPlayerInput();
 //    if (choice.equals("p")) {
 //      Setup.setup();

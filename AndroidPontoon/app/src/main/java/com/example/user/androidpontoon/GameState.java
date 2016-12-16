@@ -73,7 +73,7 @@ public class GameState {
     }
 
     public String showAnyHand(CardPlayer player){
-        String hand = String.format(player.getName() + " has these cards: ");
+        String hand = String.format(player.getName() + ":");
         ArrayList<Card> cards = player.showHand();
         for (Card card : cards) {
             String tempString = String.format("\n - " + card.getName());

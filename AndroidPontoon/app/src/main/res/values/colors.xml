@@ -5,4 +5,6 @@
     <color name="colorPrimaryLight">#49a941</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorMainText">#ffffff</color>
+    <color name="colorRedButton">#ba0707</color>
+    <color name="colorBlackButton">#000000</color>
 </resources>
