@@ -2,69 +2,98 @@ package com.example.user.androidpontoon;
 import java.util.*;
 
 public class GameState {
-  private String mainText;
-  private ArrayList<Card> playerHand;
-  private String handValue;
-  private ArrayList<Card> dealersHand;
-  private String playerName;
-  private String toastText;
+    private Setup setup;
 
-  public GameState(){
-    this.mainText = "Welcome";
-  }
+    private String mainText;
 
-  public void singleplayerSetup() {
-    ArrayList<CardPlayer> allPlayers = new ArrayList<CardPlayer>();
-    setMainText("You will be playing against Des the Slightly Dim Dealer.");
+    private ArrayList<Card> playerHand;
+    private ArrayList<Card> dealersHand;
+    private String handValue;
 
-    printText("Type your name.");
-    String gamblerName = System.console().readLine();
+    private String playerName;
+    private String toastText;
 
-    Dealer dealer = new Dealer("Des the Dealer", new Hand(), new Deck());
-    Gambler player1 = new Gambler(gamblerName, new Hand());
-    setPlayerName(gamblerName);
+    private SinglePlayerGameManager game;
 
-    allPlayers.add(allPlayers.size(), player1);
-    allPlayers.add(allPlayers.size(), dealer);
-
-    SinglePlayerGameManager game = new SinglePlayerGameManager(this, allPlayers, dealer, player1);
-    game.play();
-  }
-
-  public void setMainText(String text) {
-    mainText = text;
-    printText(mainText);
-  }
-
-  public void setToastText(String text) {
-    toastText = text;
-    printText(toastText);
-  }
-
-  public void setPlayerName(String playerName){
-    this.playerName = playerName;
-  }
-
-  public void setPlayerHand(ArrayList<Card> cards){
-    this.playerHand = new ArrayList<Card>(cards);
-  }
-
-  public void showHand(CardPlayer player){
-    String hand = String.format(player.getName() + " has these cards: ");
-    ArrayList<Card> cards = player.showHand();
-    for (Card card : cards) {
-      String tempString = String.format("- " + card.getName());
-      hand = String.format(hand + tempString);
+    public GameState(Setup setup){
+        this.setup = setup;
+        this.mainText = "Welcome to Pontoon";
     }
-    printText(hand);
-  }
 
-  public String getPlayerInput() {
-    return System.console().readLine().toLowerCase();
-  }
+    public void singleplayerSetup() {
+        ArrayList<CardPlayer> allPlayers = new ArrayList<CardPlayer>();
+        setMainText("You will be playing against Des the Slightly Dim Dealer.");
 
-  public void printText(String text) {
-    System.out.println(text);
-  }
+        printText("Type your name.");
+
+//    String gamblerName = setup.getUserInput();
+        String gamblerName = "player";
+
+        Dealer dealer = new Dealer("Des the Dealer", new Hand(), new Deck());
+        Gambler player1 = new Gambler(gamblerName, new Hand());
+        setPlayerName(gamblerName);
+
+        allPlayers.add(allPlayers.size(), player1);
+        allPlayers.add(allPlayers.size(), dealer);
+
+        game = new SinglePlayerGameManager(this, allPlayers, dealer, player1);
+        game.play();
+    }
+
+    public void setMainText(String text) {
+        mainText = text;
+        printText(mainText);
+    }
+
+    public String getMainText(){
+        return mainText;
+    }
+
+    public void setToastText(String text) {
+        toastText = text;
+        setup.showToast(toastText);
+    }
+
+    public void setPlayerName(String playerName){
+        this.playerName = playerName;
+    }
+
+    public void setPlayerHand(ArrayList<Card> cards){
+        this.playerHand = new ArrayList<Card>(cards);
+    }
+
+    public void showHand(CardPlayer player){
+        String hand = String.format(player.getName() + " has these cards: ");
+        ArrayList<Card> cards = player.showHand();
+        for (Card card : cards) {
+            String tempString = String.format("- " + card.getName());
+            hand = String.format(hand + tempString);
+        }
+        updateHand(hand);
+    }
+
+//  public String getPlayerInput() {
+////    return System.console().readLine().toLowerCase();
+//      String input = setup.getUserInput();
+//      return input;
+//  }
+
+    public void getPlayerChoice() {
+//    return System.console().readLine().toLowerCase();
+        setup.getPlayerChoice();
+    }
+
+    public void setPlayerChoice(String choice) {
+        game.turnHandler(choice);
+    }
+
+    public void printText(String text) {
+        setup.setMainText(text);
+    }
+
+    public void updateHand(String text) {
+
+        setup.setPlayerHand(text);
+    }
 
 }

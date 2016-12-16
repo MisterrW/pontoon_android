@@ -11,7 +11,7 @@ public class WinCheck {
     this.gameState = gameState;
     this.allPlayers = allPlayers;
     this.outcome = new String("");
-    this.singlePlayerGameManager = singlePlayerGameManager;
+    this.singlePlayerGameManager = gameManager;
   }
 
   public void showAllHands() {
@@ -19,16 +19,6 @@ public class WinCheck {
       showHand(player);
     }
   }
-
-  // public void showHand(CardPlayer player){
-  //   System.out.println(player.getName() + " has these cards:");
-
-  //   ArrayList<Card> cards = player.showHand();
-  //   for (Card card : cards) {
-  //     System.out.println("- " + card.getName());
-  //   }
-  //   System.out.println("*~*~*~*~*");
-  // }
 
   public void showHand(CardPlayer player) {
     gameState.showHand(player);
@@ -113,13 +103,13 @@ public class WinCheck {
 
   public void endGame(){
     gameState.setToastText("~* Thanks for playing! *~");
-    gameState.setMainText("~* Type P to play again, or anything else to quit. *~");
-    String choice = gameState.getPlayerInput();
-    if (choice.equals("p")) {
-      Setup.setup();
-    } else {
-      System.exit(0);
-    }
+    gameState.setToastText("~* Type P to play again, or anything else to quit. *~");
+//    String choice = gameState.getPlayerInput();
+//    if (choice.equals("p")) {
+//      Setup.setup();
+//    } else {
+//      System.exit(0);
+//    }
   }
 
     public String fakeWinCheck() {
