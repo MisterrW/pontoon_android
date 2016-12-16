@@ -39,6 +39,9 @@ public class Setup extends AppCompatActivity {
         enterName = (EditText)findViewById(R.id.enter_name);
         mainText.setText(text);
 
+        enterName.setVisibility(View.GONE);
+        dealerHand.setVisibility(View.INVISIBLE);
+
         gameState.singleplayerSetup();
 
         restartButton.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +109,8 @@ public class Setup extends AppCompatActivity {
         twistButton.setVisibility(View.GONE);
         stickButton.setVisibility(View.GONE);
         enterName.setVisibility(View.GONE);
+        hand.setVisibility(View.VISIBLE);
+        dealerHand.setVisibility(View.VISIBLE);
     }
     public void setMainText(String text){
         mainText.setText(text);

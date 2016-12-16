@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical" android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+                android:background="@color/colorPrimaryDark"
+              android:textColor="@color/colorMainText">
 
     <TextView
         android:id="@+id/main_text"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="20dp"
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:text="Hello World!"
+        android:textColor="@color/colorMainText"
+        android:background="@drawable/hand_background"/>
 
     <EditText
         android:id="@+id/enter_name"
@@ -17,7 +24,11 @@
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="input"/>
+        android:hint=""
+        android:textColor="@color/colorMainText"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
 
     <!--<Button-->
         <!--android:id="@+id/go_button"-->
@@ -29,7 +40,9 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:orientation="horizontal" android:layout_width="match_parent"
-                  android:layout_height="wrap_content">
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="20dp"
+                  android:layout_marginRight="20dp">
 
     <Button
         android:id="@+id/twist_button"
@@ -54,22 +67,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:padding="20dp"
         android:textSize="20dp"
-        android:text="Hand"/>
+        android:text=""
+        android:textColor="@color/colorMainText"
+        android:background="@drawable/hand_background"/>
 
     <TextView
         android:id="@+id/dealer_hand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:textSize="20dp"
-        android:text="Hand"/>
+        android:padding="20dp"
+        android:textColor="@color/colorMainText"
+        android:background="@drawable/hand_background"/>
 
     <Button
         android:id="@+id/restart_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:textSize="20dp"
         android:text="RESTART"/>
 
