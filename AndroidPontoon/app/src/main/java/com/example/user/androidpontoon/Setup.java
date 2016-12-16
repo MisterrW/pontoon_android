@@ -19,6 +19,7 @@ public class Setup extends AppCompatActivity {
     Button stickButton;
     Button restartButton;
     GameState gameState;
+    TextView dealerHand;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class Setup extends AppCompatActivity {
         String text = gameState.getMainText();
         mainText = (TextView)findViewById(R.id.main_text);
         hand = (TextView)findViewById(R.id.hand);
+        dealerHand = (TextView)findViewById(R.id.dealer_hand);
         enterName = (EditText)findViewById(R.id.enter_name);
         mainText.setText(text);
 
@@ -96,6 +98,15 @@ public class Setup extends AppCompatActivity {
        hand.setText(text);
     }
 
+    public void setDealerHand(String text){
+        dealerHand.setText(text);
+    }
+
+    public void endGameScreen(){
+        twistButton.setVisibility(View.GONE);
+        stickButton.setVisibility(View.GONE);
+        enterName.setVisibility(View.GONE);
+    }
     public void setMainText(String text){
         mainText.setText(text);
     }

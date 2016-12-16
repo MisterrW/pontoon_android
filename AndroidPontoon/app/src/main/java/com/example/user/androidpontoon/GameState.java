@@ -62,14 +62,24 @@ public class GameState {
         this.playerHand = new ArrayList<Card>(cards);
     }
 
-    public void showHand(CardPlayer player){
+    public void showHand(CardPlayer player) {
+        String hand = showAnyHand(player);
+        updateHand(hand);
+    }
+
+    public void showDealerHand(CardPlayer dealer) {
+        String dealerHand = showAnyHand(dealer);
+        updateDealerHand(dealerHand);
+    }
+
+    public String showAnyHand(CardPlayer player){
         String hand = String.format(player.getName() + " has these cards: ");
         ArrayList<Card> cards = player.showHand();
         for (Card card : cards) {
             String tempString = String.format("- " + card.getName());
             hand = String.format(hand + tempString);
         }
-        updateHand(hand);
+        return hand;
     }
 
 //  public String getPlayerInput() {
@@ -93,6 +103,14 @@ public class GameState {
 
     public void updateHand(String text) {
         setup.setPlayerHand(text);
+    }
+
+    public void updateDealerHand(String text) {
+        setup.setDealerHand(text);
+    }
+
+    public void endGame(){
+        setup.endGameScreen();
     }
 
 }
