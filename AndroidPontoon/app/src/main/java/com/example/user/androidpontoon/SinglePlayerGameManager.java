@@ -23,14 +23,14 @@ public class SinglePlayerGameManager {
   }
 
   public void setup(){
-    gameState.setToastText("~* Filling the Deck! *~");
+    gameState.setToastText("Filling the Deck!");
     dealer.fillDeck();
-    gameState.setToastText("~* Shuffling the Deck! *~");
+    gameState.setToastText("Shuffling the Deck!");
     dealer.shuffleCards();
   }
 
   public void initialDeal(){
-    gameState.setToastText("~* Initial deal! All players receive two cards! *~");
+    gameState.setToastText("Initial deal! All players receive two cards!");
     for(int i=1; i<=2; i++) {
       dealAll();
     }
@@ -52,7 +52,7 @@ public class SinglePlayerGameManager {
   public void twistCheck(){
     if (this.allPlayers.size() == 2) {
 
-      gameState.setMainText("~* You're up, " + this.player.getName() + ". Stick or twist? *~");
+      gameState.setMainText("You're up, " + this.player.getName() + ". Stick or twist?");
 
       gameState.getPlayerChoice();
     }
@@ -67,13 +67,13 @@ public class SinglePlayerGameManager {
       gameState.setToastText("You receive the " + card.getName() + ".");
         gameState.showHand(this.player);
       gameState.setToastText(this.player.getName() + ", your hand is now worth " + this.winCheck.calcScore(this.player) + ".");
-      gameState.setToastText("*~*~*~*~*");
+//      gameState.setToastText("*~*~*~*~*");
       this.winCheck.bustCheck(this.player);
     }
-    else
-    {
-      gameState.setToastText(this.player.getName() + ", your hand is worth " + this.winCheck.calcScore(this.player) + ".");
-    }
+//    else
+//    {
+//      gameState.setToastText(this.player.getName() + ", your hand is worth " + this.winCheck.calcScore(this.player) + ".");
+//    }
 
     if (choice.equals("stick")) {
       gameState.setMainText("You stick! Dealer's round!");

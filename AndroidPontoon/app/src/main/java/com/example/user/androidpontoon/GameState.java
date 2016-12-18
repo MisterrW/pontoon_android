@@ -1,4 +1,6 @@
 package com.example.user.androidpontoon;
+import android.widget.ImageView;
+
 import java.util.*;
 
 public class GameState {
@@ -12,6 +14,7 @@ public class GameState {
 
     private String playerName;
     private String toastText;
+
 
     private SinglePlayerGameManager game;
 
@@ -27,7 +30,7 @@ public class GameState {
         printText("Type your name.");
 
 //    String gamblerName = setup.getUserInput();
-        String gamblerName = "player";
+        String gamblerName = "Player";
 
         Dealer dealer = new Dealer("Des the Dealer", new Hand(), new Deck());
         Gambler player1 = new Gambler(gamblerName, new Hand());
@@ -51,7 +54,7 @@ public class GameState {
 
     public void setToastText(String text) {
         toastText = text;
-        setup.showToast(toastText);
+//        setup.showToast(toastText);
     }
 
     public void setPlayerName(String playerName){
@@ -65,6 +68,7 @@ public class GameState {
     public void showHand(CardPlayer player) {
         String hand = showAnyHand(player);
         updateHand(hand);
+        setup.setPlayerHandImages(player.showHand());
     }
 
     public void showDealerHand(CardPlayer dealer) {
@@ -102,7 +106,6 @@ public class GameState {
     }
 
     public void updateHand(String text) {
-        setup.setPlayerHand(text);
     }
 
     public void updateDealerHand(String text) {

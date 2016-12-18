@@ -101,13 +101,13 @@ public class WinCheck {
             calcScore(player);
         }
         winCheckSpecialScore();
-        gameState.setMainText("~* " + this.outcome + " *~");
+        gameState.setMainText(this.outcome);
         endGame();
     }
 
     public void endGame(){
-        gameState.setToastText("~* Thanks for playing! *~");
-        gameState.setToastText("~* Type P to play again, or anything else to quit. *~");
+        gameState.setToastText("Thanks for playing!");
+        gameState.setToastText("Type P to play again, or anything else to quit.");
         gameState.endGame();
         gameState.showDealerHand(dealer);
         gameState.showHand(player);
