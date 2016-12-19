@@ -96,7 +96,6 @@ public class WinCheck {
     }
 
     public void winCheck() {
-        // System.out.println("*~*~*~*~*");
         for (CardPlayer player : allPlayers) {
             calcScore(player);
         }
@@ -111,23 +110,16 @@ public class WinCheck {
         gameState.endGame();
         gameState.showDealerHand(dealer);
         gameState.showHand(player);
-//    String choice = gameState.getPlayerInput();
-//    if (choice.equals("p")) {
-//      Setup.setup();
-//    } else {
-//      System.exit(0);
-//    }
     }
 
-    public String fakeWinCheck() {
-        // System.out.println("*~*~*~*~*");
-        for (CardPlayer player : allPlayers) {
-            calcScore(player);
-        }
-        winCheckSpecialScore();
-        System.out.println(this.outcome);
-        return this.outcome;
-    }
+//    public String fakeWinCheck() {
+//        for (CardPlayer player : allPlayers) {
+//            calcScore(player);
+//        }
+//        winCheckSpecialScore();
+//        System.out.println(this.outcome);
+//        return this.outcome;
+//    }
 
     public void winCheckSpecialScore() {
         if (this.allPlayers.size() == 2) {

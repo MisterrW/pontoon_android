@@ -25,11 +25,9 @@ public class GameState {
 
     public void singleplayerSetup() {
         ArrayList<CardPlayer> allPlayers = new ArrayList<CardPlayer>();
-        setMainText("You will be playing against Des the Slightly Dim Dealer.");
 
         printText("Type your name.");
 
-//    String gamblerName = setup.getUserInput();
         String gamblerName = "Player";
 
         Dealer dealer = new Dealer("Des the Dealer", new Hand(), new Deck());
@@ -61,13 +59,7 @@ public class GameState {
         this.playerName = playerName;
     }
 
-    public void setPlayerHand(ArrayList<Card> cards){
-        this.playerHand = new ArrayList<Card>(cards);
-    }
-
     public void showHand(CardPlayer player) {
-        String hand = showAnyHand(player);
-        updateHand(hand);
         setup.setPlayerHandImages(player.showHand());
     }
 
@@ -86,14 +78,7 @@ public class GameState {
         return hand;
     }
 
-//  public String getPlayerInput() {
-////    return System.console().readLine().toLowerCase();
-//      String input = setup.getUserInput();
-//      return input;
-//  }
-
     public void getPlayerChoice() {
-//    return System.console().readLine().toLowerCase();
         setup.getPlayerChoice();
     }
 
@@ -103,9 +88,6 @@ public class GameState {
 
     public void printText(String text) {
         setup.setMainText(text);
-    }
-
-    public void updateHand(String text) {
     }
 
     public void updateDealerHand(String text) {

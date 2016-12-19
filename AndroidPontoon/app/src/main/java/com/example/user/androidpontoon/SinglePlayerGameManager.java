@@ -51,37 +51,25 @@ public class SinglePlayerGameManager {
 
   public void twistCheck(){
     if (this.allPlayers.size() == 2) {
-
       gameState.setMainText("You're up, " + this.player.getName() + ". Stick or twist?");
-
       gameState.getPlayerChoice();
     }
   }
 
   public void turnHandler(String choice){
-//        choice = gameState.getPlayerInput();
     gameState.setMainText("You  " + choice + "!");
-    if(choice.equals("twist"))
-    {
+    if(choice.equals("twist")) {
       Card card = deal(this.player);
       gameState.setToastText("You receive the " + card.getName() + ".");
         gameState.showHand(this.player);
       gameState.setToastText(this.player.getName() + ", your hand is now worth " + this.winCheck.calcScore(this.player) + ".");
-//      gameState.setToastText("*~*~*~*~*");
       this.winCheck.bustCheck(this.player);
     }
-//    else
-//    {
-//      gameState.setToastText(this.player.getName() + ", your hand is worth " + this.winCheck.calcScore(this.player) + ".");
-//    }
 
     if (choice.equals("stick")) {
       gameState.setMainText("You stick! Dealer's round!");
       dealersRound();
     }
-//    else {
-//      turnHandler();
-//    }
   }
 
   public void dealersRound() {

@@ -42,7 +42,7 @@ public class Setup extends AppCompatActivity {
         twistButton = (Button)findViewById(R.id.twist_button);
         stickButton = (Button)findViewById(R.id.stick_button);
         restartButton = (Button)findViewById(R.id.restart_button);
-
+        restartButton.setVisibility(View.INVISIBLE);
         gameState = new GameState(Setup.this);
         String text = gameState.getMainText();
         mainText = (TextView)findViewById(R.id.main_text);
@@ -52,7 +52,7 @@ public class Setup extends AppCompatActivity {
 //        enterName = (EditText)findViewById(R.id.enter_name);
         mainText.setText(text);
 //        enterName.setVisibility(View.GONE);
-        dealerHand.setVisibility(View.INVISIBLE);
+        dealerHand.setVisibility(View.GONE);
 
         playerHand = new ArrayList<ImageView>();
         playerHand1 = (ImageView)findViewById(R.id.player_hand_1);
@@ -112,6 +112,7 @@ public class Setup extends AppCompatActivity {
         stickButton.setVisibility(View.GONE);
 //        enterName.setVisibility(View.GONE);
         dealerHand.setVisibility(View.VISIBLE);
+        restartButton.setVisibility(View.VISIBLE);
     }
     public void setMainText(String text){
         mainText.setText(text);
