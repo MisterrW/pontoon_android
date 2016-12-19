@@ -60,7 +60,8 @@ public class GameState {
     }
 
     public void showHand(CardPlayer player) {
-        setup.setPlayerHandImages(player.showHand());
+        Gambler player1 = (Gambler)player;
+        setup.setPlayerHandImages(player1.showHand());
     }
 
     public void showDealerHand(CardPlayer dealer) {

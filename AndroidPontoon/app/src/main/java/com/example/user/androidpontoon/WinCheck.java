@@ -25,7 +25,7 @@ public class WinCheck {
     }
 
     public void showHand(CardPlayer player) {
-        gameState.showHand(player);
+        gameState.showAnyHand(player);
     }
 
     public int calcScore(CardPlayer player) {
