@@ -1,6 +1,7 @@
 package com.example.user.androidpontoon;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,16 +12,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 /**
  * Created by User on 19/12/2016.
  */
 public class OutcomePage extends AppCompatActivity {
+
     Gambler gambler;
     Dealer dealer;
     Button restartButton;
 
+    TextView winCount;
     TextView playerScore;
     TextView dealerScore;
 
@@ -49,8 +51,10 @@ public class OutcomePage extends AppCompatActivity {
         String dealerJson = intent.getStringExtra("dealer");
         String gamblerJson = intent.getStringExtra("gambler");
 
-        Dealer dealer = gson.fromJson(dealerJson, Dealer.class);
-        Gambler gambler = gson.fromJson(gamblerJson, Gambler.class);
+        dealer = gson.fromJson(dealerJson, Dealer.class);
+        gambler = gson.fromJson(gamblerJson, Gambler.class);
+
+        winCount = (TextView)findViewById(R.id.win_count);
 
         String pScore = Integer.toString(gambler.getScore());
         String dScore = Integer.toString(dealer.getScore());
@@ -90,18 +94,50 @@ public class OutcomePage extends AppCompatActivity {
         restartButton = (Button)findViewById(R.id.restart_button);
 
         if(gambler.getWinner() == true) {
+            gambler.setWinCount(gambler.getWinCount()+1);
             restartButton.setBackgroundResource(R.drawable.winbutton_01);
         } else {
+            dealer.setWinCount(dealer.getWinCount()+1);
             restartButton.setBackgroundResource(R.drawable.losebutton_01);
         }
+
+        String wincounttext = String.format("Wins: Player " + gambler.getWinCount() + ", Computer " + dealer.getWinCount());
+        winCount.setText(wincounttext);
+
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OutcomePage.this, Home.class);
+
+                gambler.setSpecialScore("");
+                dealer.setSpecialScore("");
+                gambler.setScore(0);
+                dealer.setScore(0);
+                gambler.setWinner(false);
+                dealer.setWinner(false);
+
+                int gsize = gambler.showHand().size();
+                for(int i=1; i<=gsize; i++){
+                    dealer.returnCardToBackOfDeck(gambler.returnCard());
+                }
+
+                int dsize = dealer.showHand().size();
+                for(int i=1; i<=dsize; i++){
+                    dealer.returnCardToBackOfDeck(dealer.returnCard());
+                }
+
+
+                Gson gson = new Gson();
+                String dealerJson = gson.toJson(dealer);
+                String gamblerJson = gson.toJson(gambler);
+
+                Intent intent = new Intent(OutcomePage.this, Setup.class);
+                intent.putExtra("dealer", dealerJson);
+                intent.putExtra("gambler", gamblerJson);
                 finish();
                 startActivity(intent);
             }
         });
+
     }
 
     public void setHandImages(Gambler gambler, Dealer dealer){

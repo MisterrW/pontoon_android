@@ -17,16 +17,11 @@ public class SinglePlayerGameManager {
   }
 
   public void play(){
-    setup();
     initialDeal();
     twistCheck();
   }
 
   public void setup(){
-    gameState.setToastText("Filling the Deck!");
-    dealer.fillDeck();
-    gameState.setToastText("Shuffling the Deck!");
-    dealer.shuffleCards();
   }
 
   public void initialDeal(){

@@ -62,4 +62,8 @@ public abstract class Player {
   public void setWinCount(int winCount) {
     this.winCount = winCount;
   }
+
+  public Card returnCard(){
+    return hand.returnCard();
+  }
 }

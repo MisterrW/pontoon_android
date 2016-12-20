@@ -68,7 +68,16 @@ public class Setup extends AppCompatActivity {
         playerHand.add(playerHand4);
         playerHand.add(playerHand5);
 
-        gameState.singleplayerSetup();
+        Intent intent = getIntent();
+        Gson gson = new Gson();
+
+        String dealerJson = intent.getStringExtra("dealer");
+        String gamblerJson = intent.getStringExtra("gambler");
+
+        Dealer dealer = gson.fromJson(dealerJson, Dealer.class);
+        Gambler gambler = gson.fromJson(gamblerJson, Gambler.class);
+        gameState.singleplayerContinue(gambler, dealer);
+//        gameState.singleplayerSetup();
 
 
     }
@@ -138,10 +147,7 @@ public class Setup extends AppCompatActivity {
     }
 
     public void endGameScreen(CardPlayer gambler, CardPlayer dealer){
-//        twistButton.setVisibility(View.GONE);
-//        stickButton.setVisibility(View.GONE);
-//        dealerHand.setVisibility(View.VISIBLE);
-//        restartButton.setVisibility(View.VISIBLE);
+        mainText.setVisibility(View.INVISIBLE);
         this.gamblerEnd = (Gambler)gambler;
         this.dealerEnd = (Dealer)dealer;
         outcomePage(null);

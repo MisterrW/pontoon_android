@@ -18,7 +18,7 @@ public class Hand {
 
  public Card returnCard(){
   if(cards.size() > 0) {
-    Card card = cards.remove(cards.size() - 1);
+    Card card = cards.remove(cards.size()-1);
     return card;
   }
   return null;

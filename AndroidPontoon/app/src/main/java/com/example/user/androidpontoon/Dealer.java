@@ -9,6 +9,10 @@ public class Dealer extends Player implements CardPlayer{
     this.deck = deck;
   }
 
+  public int getDeckSize(){
+    return deck.getDeckSize();
+  }
+
   public void fillDeck() {
     this.deck.fillDeck();
   }
@@ -19,5 +23,9 @@ public class Dealer extends Player implements CardPlayer{
 
   public Card dealCard(){
     return this.deck.dealCard();
+  }
+
+  public void returnCardToBackOfDeck(Card card) {
+    deck.returnCardToBackOfDeck(card);
   }
 }

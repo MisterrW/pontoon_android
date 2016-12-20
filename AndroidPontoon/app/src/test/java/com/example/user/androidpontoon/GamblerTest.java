@@ -44,4 +44,29 @@ public class GamblerTest {
     player.setSpecialScore("pontoon");
     assertEquals("pontoon", player.getSpecialScore());
   }
+
+  @Test
+  public void testReturnCard(){
+    assertEquals(2, player.showHand().size());
+    player.returnCard();
+    assertEquals(1, player.showHand().size());
+  }
+
+  @Test
+  public void testReturnHand(){
+    Card card3 = new Card(CardSuit.DIAMONDS, CardValue.THREE);
+    Card card4 = new Card(CardSuit.HEARTS, CardValue.SIX);
+    Card card5 = new Card(CardSuit.DIAMONDS, CardValue.THREE);
+    Card card6 = new Card(CardSuit.HEARTS, CardValue.SIX);
+    player.receiveCard(card3);
+    player.receiveCard(card4);
+    player.receiveCard(card5);
+    player.receiveCard(card6);
+
+    int size = player.showHand().size();
+    for(int i=1; i<=size; i++){
+      player.returnCard();
+    }
+    assertEquals(0, player.showHand().size());
+  }
 }

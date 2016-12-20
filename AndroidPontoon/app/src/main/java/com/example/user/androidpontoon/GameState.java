@@ -4,6 +4,7 @@ import android.widget.ImageView;
 import java.util.*;
 
 public class GameState {
+
     private Setup setup;
 
     private String mainText;
@@ -23,6 +24,21 @@ public class GameState {
         this.mainText = "Welcome to Pontoon";
     }
 
+    public GameState(Setup setup, Gambler gambler, Dealer dealer){
+        this.setup = setup;
+        this.mainText = "Welcome to Pontoon";
+    }
+
+    public void singleplayerContinue(Gambler gambler, Dealer dealer) {
+        ArrayList<CardPlayer> allPlayers = new ArrayList<CardPlayer>();
+
+        allPlayers.add(allPlayers.size(), gambler);
+        allPlayers.add(allPlayers.size(), dealer);
+
+        game = new SinglePlayerGameManager(this, allPlayers, dealer, gambler);
+        game.play();
+    }
+
     public void singleplayerSetup() {
         ArrayList<CardPlayer> allPlayers = new ArrayList<CardPlayer>();
 
@@ -31,13 +47,13 @@ public class GameState {
         String gamblerName = "Player";
 
         Dealer dealer = new Dealer("Des the Dealer", new Hand(), new Deck());
-        Gambler player1 = new Gambler(gamblerName, new Hand());
+        Gambler gambler = new Gambler(gamblerName, new Hand());
         setPlayerName(gamblerName);
 
-        allPlayers.add(allPlayers.size(), player1);
+        allPlayers.add(allPlayers.size(), gambler);
         allPlayers.add(allPlayers.size(), dealer);
 
-        game = new SinglePlayerGameManager(this, allPlayers, dealer, player1);
+        game = new SinglePlayerGameManager(this, allPlayers, dealer, gambler);
         game.play();
     }
 

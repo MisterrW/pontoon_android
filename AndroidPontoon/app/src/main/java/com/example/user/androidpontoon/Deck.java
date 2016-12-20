@@ -31,6 +31,10 @@ public class Deck {
     return card;
   }
 
+    public int getDeckSize() {
+        return this.cards.size();
+    }
+
   public void returnCardToBackOfDeck(Card card) {
     cards.add(0, card);
   }
