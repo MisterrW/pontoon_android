@@ -50,9 +50,11 @@ public class OutcomePage extends AppCompatActivity {
 
         String dealerJson = intent.getStringExtra("dealer");
         String gamblerJson = intent.getStringExtra("gambler");
+        String stakeJson = intent.getStringExtra("stake");
 
         dealer = gson.fromJson(dealerJson, Dealer.class);
         gambler = gson.fromJson(gamblerJson, Gambler.class);
+        int stake = gson.fromJson(stakeJson, int.class);
 
         winCount = (TextView)findViewById(R.id.win_count);
 
@@ -95,13 +97,17 @@ public class OutcomePage extends AppCompatActivity {
 
         if(gambler.getWinner() == true) {
             gambler.setWinCount(gambler.getWinCount()+1);
+            gambler.setFunds(gambler.getFunds()+stake);
+            dealer.setFunds(dealer.getFunds()-stake);
             restartButton.setBackgroundResource(R.drawable.winbutton_01);
         } else {
             dealer.setWinCount(dealer.getWinCount()+1);
+            dealer.setFunds(dealer.getFunds()+stake);
+            gambler.setFunds(gambler.getFunds()-stake);
             restartButton.setBackgroundResource(R.drawable.losebutton_01);
         }
 
-        String wincounttext = String.format("Wins: Player " + gambler.getWinCount() + ", Computer " + dealer.getWinCount());
+        String wincounttext = String.format("Funds: Player " + gambler.getFunds() + ", Computer " + dealer.getFunds());
         winCount.setText(wincounttext);
 
         restartButton.setOnClickListener(new View.OnClickListener() {

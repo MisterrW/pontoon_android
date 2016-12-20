@@ -80,6 +80,10 @@ public class GameState {
         setup.setPlayerHandImages(player1.showHand());
     }
 
+    public void showHoleCard(Dealer dealer) {
+        setup.setHoleCardImage(dealer.showHand().get(0));
+    }
+
     public void showDealerHand(CardPlayer dealer) {
         String dealerHand = showAnyHand(dealer);
         updateDealerHand(dealerHand);

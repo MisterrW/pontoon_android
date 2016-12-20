@@ -9,6 +9,7 @@ public abstract class Player {
   private int winCount;
   private String specialScore;
   private Boolean winner;
+  private int funds;
 
   public Player(String name, Hand hand) {
     this.hand = hand;
@@ -17,6 +18,7 @@ public abstract class Player {
     this.winCount = 0;
     this.specialScore = "";
     this.winner = false;
+    this.funds = 0;
   }
 
   public ArrayList<Card> showHand() {
@@ -45,6 +47,14 @@ public abstract class Player {
 
   public int getScore() {
     return this.score;
+  }
+
+  public void setFunds(int funds) {
+    this.funds = funds;
+  }
+
+  public int getFunds() {
+    return this.funds;
   }
 
   public void setSpecialScore(String specialScore) {

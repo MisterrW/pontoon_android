@@ -17,13 +17,13 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-
     }
 
     public void playGame(View view) {
         Dealer dealer = new Dealer("Dealer", new Hand(), new Deck());
         Gambler gambler = new Gambler("Player", new Hand());
+        gambler.setFunds(200);
+        dealer.setFunds(200);
 
         dealer.fillDeck();
         dealer.shuffleCards();

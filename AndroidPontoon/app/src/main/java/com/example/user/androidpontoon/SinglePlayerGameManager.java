@@ -30,6 +30,7 @@ public class SinglePlayerGameManager {
       dealAll();
     }
     gameState.showHand(this.player);
+    gameState.showHoleCard(this.dealer);
   }
 
   public void dealAll(){
