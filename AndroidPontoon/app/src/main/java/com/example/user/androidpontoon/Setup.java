@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,9 +23,10 @@ public class Setup extends AppCompatActivity {
     Button goButton;
     Button twistButton;
     Button stickButton;
-    Button restartButton;
+
     GameState gameState;
     TextView dealerHand;
+    String dealerHandText;
 
     ArrayList<ImageView> playerHand;
     ImageView playerHand1;
@@ -31,8 +34,8 @@ public class Setup extends AppCompatActivity {
     ImageView playerHand3;
     ImageView playerHand4;
     ImageView playerHand5;
-
-    ImageView testCard;
+    Player gamblerEnd;
+    Dealer dealerEnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +44,7 @@ public class Setup extends AppCompatActivity {
 
         twistButton = (Button)findViewById(R.id.twist_button);
         stickButton = (Button)findViewById(R.id.stick_button);
-        restartButton = (Button)findViewById(R.id.restart_button);
-        restartButton.setVisibility(View.INVISIBLE);
+
         gameState = new GameState(Setup.this);
         String text = gameState.getMainText();
         mainText = (TextView)findViewById(R.id.main_text);
@@ -68,14 +70,7 @@ public class Setup extends AppCompatActivity {
 
         gameState.singleplayerSetup();
 
-        restartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
-            }
-        });
+
     }
 
     public void getPlayerChoice() {
@@ -104,16 +99,11 @@ public class Setup extends AppCompatActivity {
     }
 
     public void setDealerHand(String text){
+        dealerHandText = text;
         dealerHand.setText(text);
     }
 
-    public void endGameScreen(){
-        twistButton.setVisibility(View.GONE);
-        stickButton.setVisibility(View.GONE);
-//        enterName.setVisibility(View.GONE);
-        dealerHand.setVisibility(View.VISIBLE);
-        restartButton.setVisibility(View.VISIBLE);
-    }
+
     public void setMainText(String text){
         mainText.setText(text);
     }
@@ -145,5 +135,25 @@ public class Setup extends AppCompatActivity {
 
         int cardID = getResources().getIdentifier(cardIDString , "drawable", getPackageName());
         return cardID;
+    }
+
+    public void endGameScreen(CardPlayer gambler, CardPlayer dealer){
+//        twistButton.setVisibility(View.GONE);
+//        stickButton.setVisibility(View.GONE);
+//        dealerHand.setVisibility(View.VISIBLE);
+//        restartButton.setVisibility(View.VISIBLE);
+        this.gamblerEnd = (Gambler)gambler;
+        this.dealerEnd = (Dealer)dealer;
+        outcomePage(null);
+    }
+
+    public void outcomePage(View view) {
+        Gson gson = new Gson();
+        String dealerEndJson = gson.toJson(this.dealerEnd);
+        String gamblerEndJson = gson.toJson(this.gamblerEnd);
+        Intent intent2 = new Intent(Setup.this, OutcomePage.class);
+        intent2.putExtra("dealer", dealerEndJson);
+        intent2.putExtra("gambler", gamblerEndJson);
+        startActivity(intent2);
     }
 }

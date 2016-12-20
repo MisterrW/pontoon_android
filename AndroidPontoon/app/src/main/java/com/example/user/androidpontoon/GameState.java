@@ -95,8 +95,8 @@ public class GameState {
         setup.setDealerHand(text);
     }
 
-    public void endGame(){
-        setup.endGameScreen();
+    public void endGame(CardPlayer player, CardPlayer dealer){
+        setup.endGameScreen(player, dealer);
     }
 
 }

@@ -10,4 +10,7 @@ public interface CardPlayer {
   public int getScore();
   public void setSpecialScore(String specialScore);
   public String getSpecialScore();
+  public Boolean getWinner();
+  public void setWinner(Boolean winner);
+
 }

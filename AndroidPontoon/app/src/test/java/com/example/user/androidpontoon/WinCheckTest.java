@@ -11,28 +11,28 @@ public class WinCheckTest {
     SinglePlayerGameManager game;
     WinCheck winCheck;
 
-    @Before
-    public void initialize() {
-        player = new Gambler("Will", new Hand());
-        dealer = new Dealer("Dealer", new Hand(), new Deck());
-        allPlayers = new ArrayList<CardPlayer>();
-        allPlayers.add(player);
-        Setup setup = new Setup();
-        GameState gameState = new GameState(setup);
-        game = new SinglePlayerGameManager(gameState, allPlayers, dealer, player);
-        winCheck = new WinCheck(game, gameState, allPlayers);
-    }
-
-    @Test
-    public void checkNormalScore(){
-        Card card1 = new Card(CardSuit.DIAMONDS, CardValue.THREE);
-        Card card2 = new Card(CardSuit.HEARTS, CardValue.SIX);
-        player.receiveCard(card1);
-        player.receiveCard(card2);
-
-        winCheck.calcScore(player);
-        assertEquals(9, player.getScore());
-    }
+//    @Before
+//    public void initialize() {
+//        player = new Gambler("Will", new Hand());
+//        dealer = new Dealer("Dealer", new Hand(), new Deck());
+//        allPlayers = new ArrayList<CardPlayer>();
+//        allPlayers.add(player);
+//        Setup setup = new Setup();
+//        GameState gameState = new GameState(setup);
+//        game = new SinglePlayerGameManager(gameState, allPlayers, dealer, player);
+//        winCheck = new WinCheck(game, gameState, allPlayers);
+//    }
+//
+//    @Test
+//    public void checkNormalScore(){
+//        Card card1 = new Card(CardSuit.DIAMONDS, CardValue.THREE);
+//        Card card2 = new Card(CardSuit.HEARTS, CardValue.SIX);
+//        player.receiveCard(card1);
+//        player.receiveCard(card2);
+//
+//        winCheck.calcScore(player);
+//        assertEquals(9, player.getScore());
+//    }
 
 //  @Test
 //  public void testAcesLowIfOver21(){
@@ -75,44 +75,44 @@ public class WinCheckTest {
 //    assertEquals("5 card trick", player.getSpecialScore());
 //  }
 
-    @Test
-    public void testNormalWin(){
-        allPlayers.add(dealer);
-        Card card1 = new Card(CardSuit.DIAMONDS, CardValue.NINE);
-        Card card2 = new Card(CardSuit.HEARTS, CardValue.ACE);
-        Card card3 = new Card(CardSuit.HEARTS, CardValue.EIGHT);
-        Card card4 = new Card(CardSuit.DIAMONDS, CardValue.EIGHT);
-        player.receiveCard(card1);
-        player.receiveCard(card2);
-        dealer.receiveCard(card3);
-        dealer.receiveCard(card4);
-
-        assertEquals("Will wins with 20!", winCheck.fakeWinCheck());
-    }
-
-    @Test
-    public void testNormalDraw(){
-        allPlayers.add(dealer);
-        Card card1 = new Card(CardSuit.DIAMONDS, CardValue.NINE);
-        Card card2 = new Card(CardSuit.HEARTS, CardValue.ACE);
-        player.receiveCard(card1);
-        player.receiveCard(card2);
-        dealer.receiveCard(card1);
-        dealer.receiveCard(card2);
-
-        assertEquals("It's a draw!", winCheck.fakeWinCheck());
-    }
-
-    @Test
-    public void testBustWin(){
-        allPlayers.add(dealer);
-        Card card1 = new Card(CardSuit.DIAMONDS, CardValue.NINE);
-        Card card2 = new Card(CardSuit.HEARTS, CardValue.TEN);
-        dealer.receiveCard(card1);
-        dealer.receiveCard(card2);
-
-        assertEquals("Dealer wins with 19!", winCheck.fakeWinCheck());
-    }
+//    @Test
+//    public void testNormalWin(){
+//        allPlayers.add(dealer);
+//        Card card1 = new Card(CardSuit.DIAMONDS, CardValue.NINE);
+//        Card card2 = new Card(CardSuit.HEARTS, CardValue.ACE);
+//        Card card3 = new Card(CardSuit.HEARTS, CardValue.EIGHT);
+//        Card card4 = new Card(CardSuit.DIAMONDS, CardValue.EIGHT);
+//        player.receiveCard(card1);
+//        player.receiveCard(card2);
+//        dealer.receiveCard(card3);
+//        dealer.receiveCard(card4);
+//
+//        assertEquals("Will wins with 20!", winCheck.fakeWinCheck());
+//    }
+//
+//    @Test
+//    public void testNormalDraw(){
+//        allPlayers.add(dealer);
+//        Card card1 = new Card(CardSuit.DIAMONDS, CardValue.NINE);
+//        Card card2 = new Card(CardSuit.HEARTS, CardValue.ACE);
+//        player.receiveCard(card1);
+//        player.receiveCard(card2);
+//        dealer.receiveCard(card1);
+//        dealer.receiveCard(card2);
+//
+//        assertEquals("It's a draw!", winCheck.fakeWinCheck());
+//    }
+//
+//    @Test
+//    public void testBustWin(){
+//        allPlayers.add(dealer);
+//        Card card1 = new Card(CardSuit.DIAMONDS, CardValue.NINE);
+//        Card card2 = new Card(CardSuit.HEARTS, CardValue.TEN);
+//        dealer.receiveCard(card1);
+//        dealer.receiveCard(card2);
+//
+//        assertEquals("Dealer wins with 19!", winCheck.fakeWinCheck());
+//    }
 
 //  @Test
 //  public void testPontoonWin(){

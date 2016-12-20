@@ -90,6 +90,7 @@ public class WinCheck {
         if(calcScore(player) > 21) {
             showHand(player);
             gameState.setToastText(player.getName() + " is bust!");
+            player.setSpecialScore("bust");
             this.allPlayers.remove(player);
             winCheck();
         }
@@ -107,30 +108,23 @@ public class WinCheck {
     public void endGame(){
         gameState.setToastText("Thanks for playing!");
         gameState.setToastText("Type P to play again, or anything else to quit.");
-        gameState.endGame();
+        gameState.endGame(player, dealer);
         gameState.showDealerHand(dealer);
         gameState.showHand(player);
     }
-
-//    public String fakeWinCheck() {
-//        for (CardPlayer player : allPlayers) {
-//            calcScore(player);
-//        }
-//        winCheckSpecialScore();
-//        System.out.println(this.outcome);
-//        return this.outcome;
-//    }
 
     public void winCheckSpecialScore() {
         if (this.allPlayers.size() == 2) {
             if (this.allPlayers.get(0).getSpecialScore().equals("pontoon") && !this.allPlayers.get(1).getSpecialScore().equals("pontoon"))
             {
                 this.outcome = String.format(this.allPlayers.get(0).getName() + " wins with pontoon!");
+                this.allPlayers.get(0).setWinner(true);
                 return;
             }
             else if (this.allPlayers.get(1).getSpecialScore().equals("pontoon") && !this.allPlayers.get(0).getSpecialScore().equals("pontoon"))
             {
                 this.outcome = String.format(this.allPlayers.get(1).getName() + " wins with pontoon!");
+                this.allPlayers.get(1).setWinner(true);
                 return;
             }
             else if (this.allPlayers.get(0).getSpecialScore().equals("pontoon") && this.allPlayers.get(1).getSpecialScore().equals("pontoon"))
@@ -141,11 +135,13 @@ public class WinCheck {
             else if (this.allPlayers.get(0).getSpecialScore().equals("5 card trick") && !this.allPlayers.get(1).getSpecialScore().equals("5 card trick"))
             {
                 this.outcome = String.format(this.allPlayers.get(0).getName() + " wins with 5 card trick!");
+                this.allPlayers.get(0).setWinner(true);
                 return;
             }
             else if (this.allPlayers.get(1).getSpecialScore().equals("5 card trick") && !this.allPlayers.get(0).getSpecialScore().equals("5 card trick"))
             {
                 this.outcome = String.format(this.allPlayers.get(1).getName() + " wins with 5 card trick!");
+                this.allPlayers.get(1).setWinner(true);
                 return;
             }
             else if (this.allPlayers.get(0).getSpecialScore().equals("5 card trick") && this.allPlayers.get(1).getSpecialScore().equals("5 card trick"))
@@ -166,11 +162,13 @@ public class WinCheck {
             if (this.allPlayers.get(0).getScore() > this.allPlayers.get(1).getScore())
             {
                 this.outcome = String.format(this.allPlayers.get(0).getName() + " wins with " + this.allPlayers.get(0).getScore() + "!");
+                this.allPlayers.get(0).setWinner(true);
                 return;
             }
             else if (this.allPlayers.get(0).getScore() < this.allPlayers.get(1).getScore())
             {
                 this.outcome = String.format(this.allPlayers.get(1).getName() + " wins with " + this.allPlayers.get(1).getScore() + "!");
+                this.allPlayers.get(1).setWinner(true);
                 return;
             }
             else
@@ -182,6 +180,7 @@ public class WinCheck {
         else if (this.allPlayers.size() == 1)
         {
             this.outcome = String.format(this.allPlayers.get(0).getName() + " wins with " + this.allPlayers.get(0).getScore() + "!");
+            this.allPlayers.get(0).setWinner(true);
             return;
         }
         else if (this.allPlayers.size() == 0)

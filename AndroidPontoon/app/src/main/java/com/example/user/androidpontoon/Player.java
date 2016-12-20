@@ -1,12 +1,14 @@
 package com.example.user.androidpontoon;
+
 import java.util.*;
 
-public abstract class Player{
+public abstract class Player {
   private String name;
   private Hand hand;
   private int score;
   private int winCount;
   private String specialScore;
+  private Boolean winner;
 
   public Player(String name, Hand hand) {
     this.hand = hand;
@@ -14,6 +16,7 @@ public abstract class Player{
     this.score = 0;
     this.winCount = 0;
     this.specialScore = "";
+    this.winner = false;
   }
 
   public ArrayList<Card> showHand() {
@@ -22,6 +25,14 @@ public abstract class Player{
 
   public void receiveCard(Card card) {
     this.hand.receiveCard(card);
+  }
+
+  public Boolean getWinner() {
+    return winner;
+  }
+
+  public void setWinner(Boolean winner) {
+    this.winner = winner;
   }
 
   public String getName() {
