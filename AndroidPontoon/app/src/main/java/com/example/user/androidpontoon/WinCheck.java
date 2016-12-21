@@ -89,10 +89,18 @@ public class WinCheck {
     public void bustCheck(CardPlayer player){
         if(calcScore(player) > 21) {
             showHand(player);
-            gameState.setToastText(player.getName() + " is bust!");
             player.setSpecialScore("bust");
             this.allPlayers.remove(player);
             winCheck();
+        }
+    }
+
+    public void fakeBustCheck(CardPlayer player){
+        if(calcScore(player) > 21) {
+            showHand(player);
+            player.setSpecialScore("bust");
+            this.allPlayers.remove(player);
+            fakeWinCheck();
         }
     }
 
@@ -103,6 +111,17 @@ public class WinCheck {
         winCheckSpecialScore();
         gameState.setMainText(this.outcome);
         endGame();
+    }
+
+    public String fakeWinCheck() {
+        for (CardPlayer player : allPlayers) {
+            calcScore(player);
+        }
+
+        winCheckSpecialScore();
+        return this.outcome;
+//        gameState.setMainText(this.outcome);
+//        endGame();
     }
 
     public void endGame(){

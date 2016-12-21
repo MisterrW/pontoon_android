@@ -6,15 +6,6 @@
               android:gravity="center"
               android:background="@color/colorPrimaryLight"
     >
-    <!--<ImageView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-
-        <!--android:src="@drawable/homepage_01"-->
-        <!--android:scaleType="centerCrop"-->
-
-
-        <!--/>-->
 
     <TextView
         android:text="Out of cash!"
@@ -31,7 +22,6 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorMainText"
         />
-
 
     <TextView
         android:text=":'("

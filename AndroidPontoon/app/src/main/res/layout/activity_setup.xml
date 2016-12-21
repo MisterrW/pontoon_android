@@ -247,5 +247,4 @@
         android:textColor="@color/colorBodyText"
         android:background="#00ffffff"/>
 
-
 </LinearLayout>
