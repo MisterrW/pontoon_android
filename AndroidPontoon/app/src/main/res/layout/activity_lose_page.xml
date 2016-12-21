@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+              android:gravity="center"
+              android:background="@color/colorPrimaryLight"
+    >
+    <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+
+        <!--android:src="@drawable/homepage_01"-->
+        <!--android:scaleType="centerCrop"-->
+
+
+        <!--/>-->
+
+    <TextView
+        android:text="Out of cash!"
+        android:textSize="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorMainText"
+        />
+
+    <TextView
+        android:text="You lose!"
+        android:textSize="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorMainText"
+        />
+
+
+    <TextView
+        android:text=":'("
+        android:textSize="160dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorMainText"
+        />
+
+    <Button
+        android:background="@drawable/playbutton_01"
+        android:layout_width="120dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="startNewGame"
+        />
+
+</LinearLayout>

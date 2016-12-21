@@ -113,7 +113,7 @@ public class OutcomePage extends AppCompatActivity {
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+            if (gambler.getFunds() > 0) {
                 gambler.setSpecialScore("");
                 dealer.setSpecialScore("");
                 gambler.setScore(0);
@@ -122,12 +122,12 @@ public class OutcomePage extends AppCompatActivity {
                 dealer.setWinner(false);
 
                 int gsize = gambler.showHand().size();
-                for(int i=1; i<=gsize; i++){
+                for (int i = 1; i <= gsize; i++) {
                     dealer.returnCardToBackOfDeck(gambler.returnCard());
                 }
 
                 int dsize = dealer.showHand().size();
-                for(int i=1; i<=dsize; i++){
+                for (int i = 1; i <= dsize; i++) {
                     dealer.returnCardToBackOfDeck(dealer.returnCard());
                 }
 
@@ -141,6 +141,11 @@ public class OutcomePage extends AppCompatActivity {
                 intent.putExtra("gambler", gamblerJson);
                 finish();
                 startActivity(intent);
+            } else {
+                Intent intentLost = new Intent(OutcomePage.this, LosePage.class);
+                finish();
+                startActivity(intentLost);
+            }
             }
         });
 

@@ -27,6 +27,10 @@
         <activity android:name=".OutcomePage">
 
         </activity>
+
+        <activity android:name=".LosePage">
+
+        </activity>
     </application>
 
 </manifest>
