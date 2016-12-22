@@ -2,6 +2,7 @@ package com.example.user.androidpontoon;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -44,7 +45,6 @@ public class OutcomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_outcome_page);
-
         Intent intent = getIntent();
         Gson gson = new Gson();
 
@@ -107,7 +107,7 @@ public class OutcomePage extends AppCompatActivity {
             restartButton.setBackgroundResource(R.drawable.losebutton_01);
         }
 
-        String wincounttext = String.format("Funds: Player " + gambler.getFunds() + ", Computer " + dealer.getFunds());
+        String wincounttext = String.format("Funds: " + gambler.getFunds() + "\n Wins: You: " + gambler.getWinCount() + ", Dealer: " + dealer.getWinCount());
         winCount.setText(wincounttext);
 
         restartButton.setOnClickListener(new View.OnClickListener() {
@@ -157,11 +157,15 @@ public class OutcomePage extends AppCompatActivity {
         ArrayList<Card> gamblersHand = gambler.showHand();
 
         for (int i=0; i<gamblersHand.size(); i++){
-            playerHand.get(i).setImageResource(getCardResID(gamblersHand.get(i)));
+            if (i<5) {
+                playerHand.get(i).setImageResource(getCardResID(gamblersHand.get(i)));
+            }
         }
 
         for (int x=0; x<dealersHand.size(); x++){
-            dealerHand.get(x).setImageResource(getCardResID(dealersHand.get(x)));
+            if (x<5) {
+                dealerHand.get(x).setImageResource(getCardResID(dealersHand.get(x)));
+            }
         }
     }
 

@@ -1,6 +1,7 @@
 package com.example.user.androidpontoon;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -98,32 +99,23 @@ public class Setup extends AppCompatActivity {
             mainText.setVisibility(View.INVISIBLE);
             funds.setText(playerFunds);
             betAmountInfo.setText(String.format("" + (betAmountSeek.getProgress()+5)));
-//            betAmountSeek.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    betAmountInfo.setText(String.format("" + (betAmountSeek.getProgress() + 5)));
-//                    updateBetAmountInfo();
-//                }
-//            });
-
             betAmountSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress,
                                               boolean fromUser) {
+
                     betAmountInfo.setText(String.valueOf(progress+5));
                 }
 
                 @Override
                 public void onStartTrackingTouch(SeekBar seekBar) {
+
                 }
 
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
                 }
             });
-
-
-
 
             playView.setVisibility(View.GONE);
             betView.setVisibility(View.VISIBLE);
@@ -163,7 +155,9 @@ public class Setup extends AppCompatActivity {
 
     public void setPlayerHandImages(ArrayList<Card> hand){
         for (int i=0; i<hand.size(); i++){
-            playerHand.get(i).setImageResource(getCardResID(hand.get(i)));
+            if (i<5) {
+                playerHand.get(i).setImageResource(getCardResID(hand.get(i)));
+            }
         }
     }
 
